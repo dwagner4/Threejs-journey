@@ -1,5 +1,7 @@
-import * as THREE from 'three'
 import Experience from '../Experience.js'
+import Environment from './Environment.js'
+import Floor from './Floor.js'
+import Fox from './Fox.js'
 
 export default class World
 {
@@ -7,14 +9,23 @@ export default class World
   {
     this.experience = new Experience()
     this.scene = this.experience.scene
+    this.resources = this.experience.resources
 
-    // Test Mesh
-    const testMesh = new THREE.Mesh(
-      new THREE.BoxGeometry(1,1,1),
-      new THREE.MeshBasicMaterial({wireframe: true})
-    )
-    this.scene.add(testMesh)
+    
+    
+    this.resources.on('ready', () =>
+    {
+      //  setup
+      this.fox = new Fox()
+      this.floor = new Floor()
+      this.environment = new Environment()
+      
+    })
+  }
 
-    console.log(this)
+  update()
+  {
+    if(this.fox){this.fox.update()}
+    
   }
 }
