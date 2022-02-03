@@ -1,21 +1,15 @@
-import EventEmitter from './EventEmitter.js'
 
-export default class Time extends EventEmitter
+
+export default class Time 
 {
   constructor() 
   {
-    super()
     
     // SetUp
     this.start = Date.now()
     this.current = this.start
     this.elapsedTime = 0
     this.delta = 16
-
-    window.requestAnimationFrame(() =>  // wait one frame to call tick()
-    {
-      this.tick()
-    })
   }
 
   tick()
@@ -24,12 +18,5 @@ export default class Time extends EventEmitter
     this.delta = currentTime - this.current
     this.current = currentTime
     this.elapsed = this.current - this.start
-    
-    this.trigger('tick')
-
-    window.requestAnimationFrame(() =>
-    {
-      this.tick()
-    })
   }
 }

@@ -45,8 +45,7 @@ export default class Experience
       this.resize()
     })
 
-    //  Time Trigger event
-    this.time.on('tick', () => 
+    this.renderer.instance.setAnimationLoop( () => 
     {
       this.update()
     })

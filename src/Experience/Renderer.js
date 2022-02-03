@@ -11,6 +11,7 @@ export default class Renderer
     this.sizes = this.experience.sizes
     this.scene = this.experience.scene
     this.camera = this.experience.camera
+    console.log(this.camera)
 
     this.setInstance()
   }
@@ -30,7 +31,6 @@ export default class Renderer
     this.instance.setClearColor('#211d20')
     this.instance.setSize(this.sizes.width, this.sizes.height)
     this.instance.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    // console.log(this.instance)
   }
 
   resize()
