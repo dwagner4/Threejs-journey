@@ -79,6 +79,7 @@ export default class Fox
 
   update()
   {
+    console.log(this.time.current)
     this.animation.mixer.update(this.time.delta * 0.001)
   }
 }

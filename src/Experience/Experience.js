@@ -45,10 +45,7 @@ export default class Experience
       this.resize()
     })
 
-    this.renderer.instance.setAnimationLoop( () => 
-    {
-      this.update()
-    })
+    this.renderer.instance.setAnimationLoop( null )
 
   }
 
@@ -60,16 +57,29 @@ export default class Experience
 
   update()
   {
+    this.time.tick()
     this.camera.update()
     this.world.update()
     this.renderer.update()
     // console.log('update the experience')
   }
 
+  start()
+  {
+    this.renderer.instance.setAnimationLoop( () => 
+    {
+      this.update()
+    })
+  }
+
+  stop()
+  {
+    this.renderer.instance.setAnimationLoop( null )
+  }
+
   destroy()
   {
     this.sizes.off('resize')
-    this.time.off('tick')
 
     //traversethe scene
     this.scene.traverse((child) =>
