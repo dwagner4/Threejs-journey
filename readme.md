@@ -29,8 +29,28 @@ add /#debug to the address to reveal the debug panel. the experience is availabl
 
 ## Experience
 
+This is a Singleton
+
 - sets the Camera, renderer and 'world'
 - may also contain the physics world
 - has the resize listener
 - sets the update loop
-  - should probably have an updateable Array instead of a list
+  - this.time.tick()
+    maybe physics update ???
+    this.camera.update()
+    this.world.update()
+    this.renderer.update()
+
+## World
+
+- instantiates the THREE.scene
+- loads resources
+- on complettion, instantiates resources
+  - instances add themselves to the scene in their constructors
+  - should we phase this somehow, progressively building scene?
+- updates all objects within world.update()
+
+## Utils/source
+
+- returns a JSON object with one entry for every resource
+- models, textures, materials, etc....
