@@ -39,6 +39,7 @@ export default class Experience
     this.renderer = new Renderer()
     this.world = new World()
     
+    /** Phsical World */
     this.physWorld = new CANNON.World()
     this.physWorld.gravity.set(0, -9.82, 0)
     const defaultMaterial = new CANNON.Material('default')
@@ -60,6 +61,7 @@ export default class Experience
       this.resize()
     })
 
+    /** initially setting animation loop to null, later call start() in script.js */
     this.renderer.instance.setAnimationLoop( null )
   }
 

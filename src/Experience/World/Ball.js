@@ -53,7 +53,6 @@ export default class Ball
 
   update()
   {
-    // console.log(this.physWorld)
     this.model.position.copy(this.body.position)
   }
 

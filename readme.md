@@ -54,3 +54,35 @@ This is a Singleton
 
 - returns a JSON object with one entry for every resource
 - models, textures, materials, etc....
+
+## Scene Objects
+
+in constructor
+this.experience = new Experience()
+this.scene = this.experience.scene
+this.physWorld = this.experience.physWorld
+this.resources = this.experience.resources
+this.objectsToUpdate = this.experience.world.objectsToUpdate
+this.model = null
+this.body = null
+
+this.setGeometry()
+this.setTextures()
+this.setMaterial()
+this.setMesh()
+this.setBody()
+
+also include an update() method
+
+```update()
+{
+  this.model.position.copy(this.body.position)
+}
+
+or
+
+update()
+{
+  this.animation.mixer.update(this.time.delta * 0.001)
+}
+```
