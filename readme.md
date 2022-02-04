@@ -32,6 +32,7 @@ add /#debug to the address to reveal the debug panel. the experience is availabl
 This is a Singleton
 
 - sets the Camera, renderer and 'world'
+- instantiates the THREE.scene
 - may also contain instanitate and configure the physics world
 - has the resize listener
 - sets the update loop
@@ -50,10 +51,9 @@ This is a Singleton
 
 ## World
 
-- instantiates the THREE.scene
 - loads resources
-- on complettion, instantiates resources
-  - instances add themselves to the scene in their constructors
+- on completion, instantiates objects
+  - instances add themselves to the scene and the physWorld in their constructors
   - should we phase this somehow, progressively building scene?
 - updates all objects within world.update()
 
