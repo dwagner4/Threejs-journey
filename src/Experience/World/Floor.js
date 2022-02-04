@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import CANNON from 'cannon'
 import Experience from '../Experience.js'
 
 export default class Floor
@@ -13,6 +14,7 @@ export default class Floor
     this.setTextures()
     this.setMaterial()
     this.setMesh()
+    this.setBody()
   }
 
   setGeometry()
@@ -49,5 +51,19 @@ export default class Floor
     this.mesh.rotation.x = - Math.PI * 0.5
     this.mesh.receiveShadow = true
     this.scene.add(this.mesh)
+  }
+
+  setBody()
+  {
+    const floorShape = new CANNON.Plane()
+    const floorBody = new CANNON.Body()
+    floorBody.mass = 0
+    floorBody.quaternion.setFromAxisAngle( 
+        new CANNON.Vec3(-1,0,0),
+        Math.PI * 0.5
+    )
+    floorBody.addShape(floorShape)
+    
+    this.experience.physWorld.addBody(floorBody)
   }
 }

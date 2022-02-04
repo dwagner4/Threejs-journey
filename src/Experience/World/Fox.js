@@ -10,6 +10,11 @@ export default class Fox
     this.resources = this.experience.resources
     this.time = this.experience.time
     this.debug = this.experience.debug
+    this.model = null
+    this.body = null
+    this.updatea = this.update
+
+    this.objectsToUpdate = this.experience.world.objectsToUpdate
 
     // Debug
     if(this.debug.active) 
@@ -22,6 +27,9 @@ export default class Fox
 
     this.setModel()
     this.setAnimation()
+    this.setBody()
+    // this.objectsToUpdate.push({model: this.model, body: this.body})
+    // this.objectsToUpdate.push(this)
   }
 
   setModel()
@@ -36,6 +44,7 @@ export default class Fox
       }
     })
     this.scene.add(this.model)
+    this.objectsToUpdate.push(this)
   }
 
   setAnimation()
@@ -77,9 +86,13 @@ export default class Fox
     }
   }
 
+  setBody()
+  {
+
+  }
+
   update()
   {
-    console.log(this.time.current)
     this.animation.mixer.update(this.time.delta * 0.001)
   }
 }

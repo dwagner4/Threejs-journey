@@ -9,6 +9,7 @@ import Debug from './Utils/Debug.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import World from './World/World.js'
+import CANNON from 'cannon'
 
 
 let instance = null
@@ -37,7 +38,21 @@ export default class Experience
     this.camera = new Camera()
     this.renderer = new Renderer()
     this.world = new World()
-    // console.log(renderer)
+    
+    this.physWorld = new CANNON.World()
+    this.physWorld.gravity.set(0, -9.82, 0)
+    const defaultMaterial = new CANNON.Material('default')
+    const defaultContactMaterial = new CANNON.ContactMaterial(
+        defaultMaterial,
+        defaultMaterial,
+        {
+            friction: 0.1,
+            restitution: 0.7
+        }
+    )
+    this.physWorld.addContactMaterial(defaultContactMaterial)
+    this.physWorld.defaultContactMaterial = defaultContactMaterial
+    
 
     //  Sizes resize event
     this.sizes.on('resize', () => 
@@ -46,7 +61,6 @@ export default class Experience
     })
 
     this.renderer.instance.setAnimationLoop( null )
-
   }
 
   resize()
@@ -59,9 +73,14 @@ export default class Experience
   {
     this.time.tick()
     this.camera.update()
+    this.physWorld.step(
+      1/60,
+      this.time.delta,
+      3
+    )
     this.world.update()
     this.renderer.update()
-    // console.log('update the experience')
+    // console.log(this.physWorld)
   }
 
   start()
