@@ -32,14 +32,16 @@ add /#debug to the address to reveal the debug panel. the experience is availabl
 This is a Singleton
 
 - sets the Camera, renderer and 'world'
-- may also contain the physics world
+- may also contain instanitate and configure the physics world
 - has the resize listener
 - sets the update loop
-  - this.time.tick()
-    maybe physics update ???
-    this.camera.update()
-    this.world.update()
-    this.renderer.update()
+
+```
+  this.time.tick()
+  this.camera.update()
+  this.world.update()
+  this.renderer.update()
+```
 
 ## World
 
@@ -58,7 +60,8 @@ This is a Singleton
 ## Scene Objects
 
 in constructor
-this.experience = new Experience()
+
+````this.experience = new Experience()
 this.scene = this.experience.scene
 this.physWorld = this.experience.physWorld
 this.resources = this.experience.resources
@@ -70,7 +73,7 @@ this.setGeometry()
 this.setTextures()
 this.setMaterial()
 this.setMesh()
-this.setBody()
+this.setBody()```
 
 also include an update() method
 
@@ -85,4 +88,4 @@ update()
 {
   this.animation.mixer.update(this.time.delta * 0.001)
 }
-```
+````
