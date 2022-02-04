@@ -66,7 +66,8 @@ This is a Singleton
 
 in constructor
 
-```this.experience = new Experience()
+```
+this.experience = new Experience()
 this.scene = this.experience.scene
 this.physWorld = this.experience.physWorld
 this.resources = this.experience.resources
@@ -79,9 +80,11 @@ this.setTextures()
 this.setMaterial()
 this.setMesh()
 this.setBody()
+```
 
-// also include an update() method
+also include an update() method
 
+```
 update()
 {
   this.model.position.copy(this.body.position)
