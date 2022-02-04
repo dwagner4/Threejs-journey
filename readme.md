@@ -39,6 +39,11 @@ This is a Singleton
 ```
   this.time.tick()
   this.camera.update()
+  this.physWorld.step(
+    1/60,
+    this.time.delta,
+    3
+  )
   this.world.update()
   this.renderer.update()
 ```
