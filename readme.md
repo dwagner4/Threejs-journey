@@ -85,11 +85,11 @@ also include an update() method
 ```update()
 {
   this.model.position.copy(this.body.position)
-}
+}```
 
 or
 
-update()
+```update()
 {
   this.animation.mixer.update(this.time.delta * 0.001)
 }
