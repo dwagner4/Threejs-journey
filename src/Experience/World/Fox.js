@@ -6,35 +6,24 @@ export default class Fox
   constructor()
   {
     this.experience = new Experience()
-    this.scene = this.experience.scene
-    this.resources = this.experience.resources
-    this.time = this.experience.time
-    this.debug = this.experience.debug
     this.model = null
     this.body = null
-    this.updatea = this.update
-
-    this.objectsToUpdate = this.experience.world.objectsToUpdate
 
     // Debug
-    if(this.debug.active) 
+    if(this.experience.debug.active) 
     {
-      this.debugFolder = this.debug.ui.addFolder('fox')
+      this.debugFolder = this.experience.debug.ui.addFolder('fox')
     }
-
-    //setup
-    this.resource = this.resources.items.foxModel
 
     this.setModel()
     this.setAnimation()
     this.setBody()
-    // this.objectsToUpdate.push({model: this.model, body: this.body})
-    // this.objectsToUpdate.push(this)
+    this.experience.world.objectsToUpdate.push(this)
   }
 
   setModel()
   {
-    this.model = this.resource.scene
+    this.model = this.experience.resources.items.foxModel.scene
     this.model.scale.set(0.02,0.02,0.02)
     this.model.traverse((child) => 
     {
@@ -43,8 +32,7 @@ export default class Fox
         child.castShadow = true
       }
     })
-    this.scene.add(this.model)
-    this.objectsToUpdate.push(this)
+    this.experience.scene.add(this.model)
   }
 
   setAnimation()
@@ -54,9 +42,9 @@ export default class Fox
     this.animation.actions = {}
 
 
-    this.animation.actions.idle = this.animation.mixer.clipAction(this.resource.animations[0])
-    this.animation.actions.walking = this.animation.mixer.clipAction(this.resource.animations[1])
-    this.animation.actions.running = this.animation.mixer.clipAction(this.resource.animations[2])
+    this.animation.actions.idle = this.animation.mixer.clipAction(this.experience.resources.items.foxModel.animations[0])
+    this.animation.actions.walking = this.animation.mixer.clipAction(this.experience.resources.items.foxModel.animations[1])
+    this.animation.actions.running = this.animation.mixer.clipAction(this.experience.resources.items.foxModel.animations[2])
 
     this.animation.actions.current = this.animation.actions.idle
     this.animation.actions.current.play()
@@ -73,7 +61,7 @@ export default class Fox
       this.animation.actions.current = newAction
     }
 
-    if(this.debug.active)
+    if(this.experience.debug.active)
     {
       const debugObject = {
         playIdle: () => {this.animation.play('idle')},
@@ -93,6 +81,6 @@ export default class Fox
 
   update()
   {
-    this.animation.mixer.update(this.time.delta * 0.001)
+    this.animation.mixer.update(this.experience.time.delta * 0.001)
   }
 }

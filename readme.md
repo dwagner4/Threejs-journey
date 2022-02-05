@@ -20,6 +20,8 @@ add /#debug to the address to reveal the debug panel. the experience is availabl
 
 # Summary
 
+Combination and refactoring of "Three.js Journey" an excellent tutorial y Brunio Simon
+
 ## index.js
 
 - instantiates the Experience within a canvas element supplied by the html

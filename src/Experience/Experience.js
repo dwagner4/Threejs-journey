@@ -23,7 +23,6 @@ export default class Experience
       return instance
     }
     instance = this
-    window.experience = this
 
     // Options
     this.canvas = canvas

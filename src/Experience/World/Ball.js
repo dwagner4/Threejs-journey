@@ -7,16 +7,13 @@ export default class Ball
   constructor()
   {
     this.experience = new Experience()
-    this.scene = this.experience.scene
-    this.physWorld = this.experience.physWorld
-    this.objectsToUpdate = this.experience.world.objectsToUpdate
     this.model = null
     this.body = null
 
     this.setModel()
     this.setAnimation()
     this.setBody()
-    this.objectsToUpdate.push(this)
+    this.experience.world.objectsToUpdate.push(this)
   }
 
   setModel()
@@ -31,7 +28,7 @@ export default class Ball
     )
     this.model.castShadow = true
     this.model.position.set(1,2,0)
-    this.scene.add(this.model)
+    this.experience.scene.add(this.model)
   }
 
   setAnimation()
@@ -48,7 +45,7 @@ export default class Ball
         shape: shape,
         // material: this.physWorld.defaultContactMaterial 
     })
-    this.physWorld.addBody(this.body)
+    this.experience.physWorld.addBody(this.body)
   }
 
   update()

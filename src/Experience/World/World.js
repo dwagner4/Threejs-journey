@@ -9,11 +9,9 @@ export default class World
   constructor()
   {
     this.experience = new Experience()
-    // this.scene = this.experience.scene
-    this.resources = this.experience.resources
     this.objectsToUpdate = []
 
-    this.resources.on('ready', () =>
+    this.experience.resources.on('ready', () =>
     {
       //  setup
       this.fox = new Fox()

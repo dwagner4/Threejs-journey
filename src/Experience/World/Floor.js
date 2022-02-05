@@ -7,13 +7,13 @@ export default class Floor
   constructor()
   {
     this.experience = new Experience()
-    this.scene = this.experience.scene
-    this.resources = this.experience.resources
+    this.model = null
+    this.body = null
 
     this.setGeometry()
     this.setTextures()
     this.setMaterial()
-    this.setMesh()
+    this.setModel()
     this.setBody()
   }
 
@@ -25,13 +25,13 @@ export default class Floor
   setTextures()
   {
     this.textures = {}
-    this.textures.color = this.resources.items.grassColorTexture
+    this.textures.color = this.experience.resources.items.grassColorTexture
     this.textures.color.encoding = THREE.sRGBEncoding
     this.textures.color.repeat.set(1.5, 1.5)
     this.textures.color.wrapS = THREE.RepeatWrapping
     this.textures.color.wrapT = THREE.RepeatWrapping
 
-    this.textures.normal = this.resources.items.grassNormalTexture
+    this.textures.normal = this.experience.resources.items.grassNormalTexture
     this.textures.normal.repeat.set(1.5, 1.5)
     this.textures.normal.wrapS = THREE.RepeatWrapping
     this.textures.normal.wrapT = THREE.RepeatWrapping
@@ -45,25 +45,25 @@ export default class Floor
     })
   }
 
-  setMesh()
+  setModel()
   {
-    this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.mesh.rotation.x = - Math.PI * 0.5
-    this.mesh.receiveShadow = true
-    this.scene.add(this.mesh)
+    this.model = new THREE.Mesh(this.geometry, this.material)
+    this.model.rotation.x = - Math.PI * 0.5
+    this.model.receiveShadow = true
+    this.experience.scene.add(this.model)
   }
 
   setBody()
   {
     const floorShape = new CANNON.Plane()
-    const floorBody = new CANNON.Body()
-    floorBody.mass = 0
-    floorBody.quaternion.setFromAxisAngle( 
+    this.body = new CANNON.Body()
+    this.body.mass = 0
+    this.body.quaternion.setFromAxisAngle( 
         new CANNON.Vec3(-1,0,0),
         Math.PI * 0.5
     )
-    floorBody.addShape(floorShape)
+    this.body.addShape(floorShape)
     
-    this.experience.physWorld.addBody(floorBody)
+    this.experience.physWorld.addBody(this.body)
   }
 }
