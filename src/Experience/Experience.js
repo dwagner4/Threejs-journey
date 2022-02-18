@@ -5,11 +5,11 @@ import Time from './Utils/Time.js'
 import Resources from './Utils/Resources.js'
 import sources from './Utils/sources.js'
 import Debug from './Utils/Debug.js'
+import PhysWorld from './Utils/PhysWorld'
 
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import World from './World/World.js'
-import CANNON from 'cannon'
 
 
 let instance = null
@@ -26,32 +26,19 @@ export default class Experience
 
     // Options
     this.canvas = canvas
+    this.scene = new THREE.Scene()
 
     // Setup
     this.debug = new Debug()
     this.sizes = new Sizes()
     this.time = new Time()
-    this.scene = new THREE.Scene()
+    
     this.resources = new Resources(sources)
+    this.physWorld = new PhysWorld()
     
     this.camera = new Camera()
     this.renderer = new Renderer()
     this.world = new World()
-    
-    /** Phsical World */
-    this.physWorld = new CANNON.World()
-    this.physWorld.gravity.set(0, -9.82, 0)
-    const defaultMaterial = new CANNON.Material('default')
-    const defaultContactMaterial = new CANNON.ContactMaterial(
-        defaultMaterial,
-        defaultMaterial,
-        {
-            friction: 0.1,
-            restitution: 0.7
-        }
-    )
-    this.physWorld.addContactMaterial(defaultContactMaterial)
-    this.physWorld.defaultContactMaterial = defaultContactMaterial
     
 
     //  Sizes resize event
@@ -81,7 +68,6 @@ export default class Experience
     )
     this.world.update()
     this.renderer.update()
-    // console.log(this.physWorld)
   }
 
   start()
@@ -101,7 +87,7 @@ export default class Experience
   {
     this.sizes.off('resize')
 
-    //traversethe scene
+    //traverse the scene
     this.scene.traverse((child) =>
     {
       if(child instanceof THREE.Mesh)
