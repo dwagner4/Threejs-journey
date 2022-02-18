@@ -20,7 +20,9 @@ add /#debug to the address to reveal the debug panel. the experience is availabl
 
 # Summary
 
-Combination and refactoring of "Three.js Journey" an excellent tutorial y Brunio Simon
+Combination and refactoring of "Three.js Journey" an excellent tutorial y Brunio Simon.
+
+After setting up scaffold, add models, textures, shaders, and fonts to Static folder and sources.js. Update child materials as needed. Add Objects to world and physWorld. Set postProcessing passes.
 
 ## index.js
 
@@ -31,11 +33,12 @@ Combination and refactoring of "Three.js Journey" an excellent tutorial y Brunio
 
 ## Experience
 
-This is a Singleton
+This is a Singleton, essentially the stage
 
 - sets the Camera, renderer and 'world'
 - instantiates the THREE.scene
 - may also contain instanitate and configure the physics world
+- adds the postprocessor
 - has the resize listener
 - sets the update loop
 
@@ -48,7 +51,8 @@ This is a Singleton
     3
   )
   this.world.update()
-  this.renderer.update()
+  // this.renderer.update()  // not needed with post processing
+  this.postProcessor.update()
 ```
 
 ## World
