@@ -9,6 +9,7 @@ import PhysWorld from './Utils/PhysWorld'
 
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
+import PostProcess from './PostProcess.js'
 import World from './World/World.js'
 
 
@@ -38,6 +39,7 @@ export default class Experience
     
     this.camera = new Camera()
     this.renderer = new Renderer()
+    this.postProcessor = new PostProcess()
     this.world = new World()
     
 
@@ -54,6 +56,7 @@ export default class Experience
   resize()
   {
     this.renderer.resize()
+    this.postProcessor.resize()
     this.camera.resize()
   }
 
@@ -67,7 +70,8 @@ export default class Experience
       3
     )
     this.world.update()
-    this.renderer.update()
+    // this.renderer.update()  // not needed with post processing
+    this.postProcessor.update()
   }
 
   start()
