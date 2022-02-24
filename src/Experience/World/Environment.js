@@ -24,7 +24,7 @@ export default class Environment
   {
     this.sunLight = new THREE.DirectionalLight('#ffffff', 4)
     this.sunLight.castShadow = true
-    this.sunLight.shadow.camera.far = 15
+    this.sunLight.shadow.camera.far = 150
     this.sunLight.shadow.mapSize.set(1024, 1024)
     this.sunLight.shadow.normalBias = 0.05
     this.sunLight.position.set(3.5, 2, - 1.25)
@@ -37,7 +37,7 @@ export default class Environment
         .add(this.sunLight, 'intensity')
         .name('sunLightIntensity')
         .min(0)
-        .max(10)
+        .max(5)
         .step(0.01)
 
       this.debugFolder
@@ -66,11 +66,11 @@ export default class Environment
   setEnvironmentMap()
   {
     this.environmentMap = {}
-    this.environmentMap.intensity = 0.4
+    this.environmentMap.intensity = 0.25
     this.environmentMap.texture = this.resources.items.environmentMapTexture
     this.environmentMap.encoding = THREE.sRGBEncoding
     this.scene.environment = this.environmentMap.texture
-    // this.scene.background = this.environmentMap.texture
+    this.scene.background = this.environmentMap.texture
     this.environmentMap.updateMaterials = () =>
     {
       this.scene.traverse((child) =>
@@ -92,7 +92,7 @@ export default class Environment
         .add(this.environmentMap, 'intensity')
         .name('envMapIntensity')
         .min(0)
-        .max(3)
+        .max(0.5)
         .step(0.01)
         .onChange(this.environmentMap.updateMaterials)
     }

@@ -2,6 +2,7 @@ import Experience from '../Experience.js'
 import Environment from './Environment.js'
 import Floor from './Floor.js'
 import Fox from './Fox.js'
+import House from './House.js'
 import Ball from './Ball.js'
 
 export default class World
@@ -15,6 +16,7 @@ export default class World
     {
       //  setup
       this.fox = new Fox()
+      this.house = new House()
       this.floor = new Floor()
       this.environment = new Environment()
       this.ball = new Ball()

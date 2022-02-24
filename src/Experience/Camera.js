@@ -21,9 +21,10 @@ export default class Camera
       35, 
       this.sizes.width / this.sizes.height,
       0.1,
-      100
+      500
     )
-    this.instance.position.set(6,4,8)
+    this.instance.position.set(-60,5,60)
+    this.instance.target = new THREE.Vector3(3,0,1.5)
     this.scene.add(this.instance)
     
   }

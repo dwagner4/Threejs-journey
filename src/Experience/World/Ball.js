@@ -47,7 +47,7 @@ export default class Ball
       this.material
     )
     this.model.castShadow = true
-    this.model.position.set(1,2,0)
+    this.model.position.set(1,15,0)
     this.experience.scene.add(this.model)
 
     // Debug
@@ -73,10 +73,12 @@ export default class Ball
 
   setBody()
   {
+    const xx = Math.random() * 5
+    const zz = Math.random() * 5
     const shape = new CANNON.Sphere(0.2)
     this.body = new CANNON.Body({
         mass: 1,
-        position: new CANNON.Vec3(1, 5, 0),
+        position: new CANNON.Vec3(xx, 15, zz),
         shape: shape,
         // material: this.physWorld.defaultContactMaterial 
     })

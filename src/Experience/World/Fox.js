@@ -23,8 +23,10 @@ export default class Fox
 
   setModel()
   {
+    console.log(this.experience.resources.items.foxModel)
     this.model = this.experience.resources.items.foxModel.scene
     this.model.scale.set(0.02,0.02,0.02)
+    this.model.position.set(3,0,1.5)
     this.model.traverse((child) => 
     {
       if (child instanceof THREE.Mesh)

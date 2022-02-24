@@ -3,12 +3,12 @@ export default [
     name: 'environmentMapTexture',
     type: 'cubeTexture',
     path: [
-      'textures/environmentMap/px.jpg',
-      'textures/environmentMap/nx.jpg',
-      'textures/environmentMap/py.jpg',
-      'textures/environmentMap/ny.jpg',
-      'textures/environmentMap/pz.jpg',
-      'textures/environmentMap/nz.jpg',
+      'textures/skybox/px.jpg',
+      'textures/skybox/nx.jpg',
+      'textures/skybox/py.jpg',
+      'textures/skybox/ny.jpg',
+      'textures/skybox/pz.jpg',
+      'textures/skybox/nz.jpg',
     ]
   },
   {
@@ -25,5 +25,10 @@ export default [
     name: 'foxModel',
     type: 'gltfModel',
     path: 'models/Fox/glTF/Fox.gltf'
+  },
+  {
+    name: 'houseModel',
+    type: 'gltfModel',
+    path: 'models/House/RobertoHouse.glb'
   },
 ]

@@ -14,6 +14,7 @@ import World from './World/World.js'
 
 
 let instance = null
+const cubeTextureLoader = new THREE.CubeTextureLoader()
 
 export default class Experience 
 {
@@ -28,6 +29,10 @@ export default class Experience
     // Options
     this.canvas = canvas
     this.scene = new THREE.Scene()
+    this.scene.fog = new THREE.Fog(0xdddddd, 15, 500)
+    console.log(this.scene)
+
+    
 
     // Setup
     this.debug = new Debug()
